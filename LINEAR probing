@@ -1,0 +1,89 @@
+. Implement two different programs for HASH table with
+Linear probing 
+Linear probing:
+
+ #include <stdio.h>;
+#include <stdlib.h>;
+#define TABLE_SIZE 10
+
+int h[TABLE_SIZE]={NULL};
+
+void insert()
+{
+
+int key,index,i,flag=0,hkey;
+printf(&quot;\nenter a value to insert into hash table\n&quot;);
+scanf(&quot;%d&quot;,&amp;key);
+hkey=key%TABLE_SIZE;
+for(i=0;i&lt;TABLE_SIZE;i++)
+{
+
+index=(hkey+i)%TABLE_SIZE;
+
+if(h[index] == NULL)
+{
+h[index]=key;
+break;
+}
+
+}
+
+if(i == TABLE_SIZE)
+
+printf(&quot;\nelement cannot be inserted\n&quot;);
+}
+void search()
+{
+
+int key,index,i,flag=0,hkey;
+printf(&quot;\nenter search element\n&quot;);
+scanf(&quot;%d&quot;,&amp;key);
+
+hkey=key%TABLE_SIZE;
+for(i=0;i&lt;TABLE_SIZE; i++)
+{
+index=(hkey+i)%TABLE_SIZE;
+if(h[index]==key)
+{
+printf(&quot;value is found at index %d&quot;,index);
+break;
+}
+}
+if(i == TABLE_SIZE)
+printf(&quot;\n value is not found\n&quot;);
+}
+void display()
+{
+
+int i;
+
+printf(&quot;\nelements in the hash table are \n&quot;);
+
+for(i=0;i&lt; TABLE_SIZE; i++)
+
+printf(&quot;\nat index %d \t value = %d&quot;,i,h[i]);
+
+}
+main()
+{
+int opt,i;
+while(1)
+{
+printf(&quot;\nPress 1. Insert\t 2. Display \t3. Search \t4.Exit \n&quot;);
+scanf(&quot;%d&quot;,&amp;opt);
+switch(opt)
+
+{
+case 1:
+insert();
+break;
+case 2:
+display();
+break;
+case 3:
+search();
+break;
+case 4:exit(0);
+}
+}
+}
